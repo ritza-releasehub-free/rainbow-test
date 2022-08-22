@@ -1,18 +1,13 @@
 from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 import traceback
+import os
 
-print("++++++++++++++")
-print("")
-print("RUNNING")
-print("")
-print("++++++++++++++")
-
-user = 'postgres'
-pw = '29626f9c15367aa6b'
-url = 'example-app.cv6iiqxg5z3f.eu-west-2.rds.amazonaws.com'
-db = 'postgres'
-DB_URL = f'postgresql+psycopg2://{user}:{pw}@{url}/{db}'
+user = os.environ.get("POSTGRES_USER")
+pw = os.environ.get("POSTGRES_PASSWORD")
+host = os.environ.get("POSTGRES_HOST")
+db = os.environ.get("POSTGRES_DATABASE_NAME")
+DB_URL = f'postgresql+psycopg2://{user}:{pw}@{host}/{db}'
 print(DB_URL)
 
 app = Flask(__name__)
