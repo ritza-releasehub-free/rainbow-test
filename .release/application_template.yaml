@@ -5,7 +5,7 @@ context: release-iewk7f
 domain: docs.hubofhubs.com
 repo_name: sixhobbits/release-flask-postgres-count
 hostnames:
-- count: 'count-release-flask-postgres-count-${env_id}.${domain}'
+- count: count-release-flask-postgres-count-${env_id}.${domain}
 environment_templates:
 - name: ephemeral
 - name: permanent
@@ -21,7 +21,7 @@ services:
 - name: count
   image: sixhobbits/release-flask-postgres-count/count
   build:
-    context: ./count
+    context: "./count"
   has_repo: true
   static: false
   args:
@@ -30,10 +30,7 @@ services:
   ports:
   - type: node_port
     target_port: '80'
-    port: '5000'
-  storage:
-    size: 10Gi
-    type: aws-efs
+    port: '1337'
 workflows:
 - name: setup
   order_from:
@@ -46,5 +43,4 @@ workflows:
 - name: patch
   order_from:
   - services.count
-tracking_branch: main
 

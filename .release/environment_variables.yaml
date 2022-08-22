@@ -31,12 +31,15 @@
 #   - key: LOGGING
 #     value: info
 
-defaults:
-- key: POSTGRES_USER
-  value: postgres
-- key: POSTGRES_PASSWORD
-  value: 29626f9c15367aa6b
-- key: POSTGRES_DATABASE_NAME
-  value: postgres
-- key: POSTGRES_HOST
-  value: example-app.cv6iiqxg5z3f.eu-west-2.rds.amazonaws.com
+defaults: []
+services:
+  count:
+    - key: POSTGRES_USER
+      value: postgres
+    - key: POSTGRES_PASSWORD
+      value: 29626f9c15367aa6b
+    - key: POSTGRES_DATABASE_NAME
+      value: postgres
+    - key: POSTGRES_HOST
+      value: example-app.cv6iiqxg5z3f.eu-west-2.rds.amazonaws.com
+
