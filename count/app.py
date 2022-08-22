@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
+import traceback
 
 print("++++++++++++++")
 print("")
@@ -27,9 +28,11 @@ class counts(db.Model):
 
 try:
     db.create_all()
-except:
-    print("couldn't create db")
-    pass
+except Exception as e:
+    print(e)
+    print("couldn't craete db")
+    traceback.print_exc()
+
 
 
 @app.route("/", methods=['POST','GET'])
