@@ -1,23 +1,11 @@
 version: "3"
 
 services:
-  vote:
+  count:
     build: ./count
     command: 
     - python 
     - app.py
     ports:
-      - "5000:80"
+      - "1337:80"
 
-  db:
-    image: postgres:14
-    ports:
-      - "5432"
-    volumes:
-      - postgres-data:/tmp/data
-    environment:
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_USER: postgres
-
-volumes:
-  postgres-data: {}

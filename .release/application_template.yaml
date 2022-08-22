@@ -5,7 +5,7 @@ context: release-iewk7f
 domain: docs.hubofhubs.com
 repo_name: sixhobbits/release-flask-postgres-count
 hostnames:
-- vote: vote-release-flask-postgres-count-${env_id}.${domain}
+- count: count-release-flask-postgres-count-${env_id}.${domain}
 environment_templates:
 - name: ephemeral
 - name: permanent
@@ -18,8 +18,8 @@ resources:
     requests: 100Mi
   replicas: 1
 services:
-- name: vote
-  image: sixhobbits/release-flask-postgres-count/vote
+- name: count 
+  image: sixhobbits/release-flask-postgres-count/count
   build:
     context: "./count"
   has_repo: true
@@ -54,5 +54,5 @@ workflows:
     - release.remove_environment
 - name: patch
   order_from:
-  - services.vote
+  - services.count
 

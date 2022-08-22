@@ -1,9 +1,23 @@
 from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 
+print("++++++++++++++")
+print("")
+print("RUNNING")
+print("")
+print("++++++++++++++")
+
+user = 'postgres'
+pw = '29626f9c15367aa6b'
+url = 'example-app.cv6iiqxg5z3f.eu-west-2.rds.amazonaws.com'
+db = 'postgres'
+DB_URL = f'postgresql+psycopg2://{user}:{pw}@{url}/{db}'
+print(DB_URL)
 
 app = Flask(__name__)
-app.config ['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///count-database.sqlite3'
+
+app.config ['SQLALCHEMY_DATABASE_URI'] = DB_URL
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
