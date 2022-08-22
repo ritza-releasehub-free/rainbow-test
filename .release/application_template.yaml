@@ -31,15 +31,6 @@ services:
   - type: node_port
     target_port: '80'
     port: '5000'
-- name: db
-  image: postgres:14
-  volumes:
-  - type: persistent
-    name: postgres-data
-    mount_path: "/tmp/data"
-  ports:
-  - type: container_port
-    port: '5432'
   storage:
     size: 10Gi
     type: aws-efs
