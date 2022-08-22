@@ -1,0 +1,46 @@
+---
+# Any ENVS present in the defaults section will be available to every container
+# ENVS defined under particular services will apply only to those services and override
+# any envs in the defaults with the same key.
+
+# Release has created (7) Environment Variables:
+# * RELEASE_ENV_ID
+# * RELEASE_COMMIT_SHORT
+# * RELEASE_ENV
+# * RELEASE_COMMIT_SHA
+# * RELEASE_ACCOUNT_ID
+# * VOTE_INGRESS_URL
+# * VOTE_INGRESS_HOST
+
+## ENV MAPPING ##
+# Documentation: https://docs.releasehub.com/reference-guide/reference-examples/environment-variable-mappings
+# You can map the Release generated ENVs to your own ENVS by uncommenting the lines below.
+#mapping:
+#  YOUR_ENV: RELEASE_ENV_ID
+#  YOUR_ENV: RELEASE_COMMIT_SHORT
+#  YOUR_ENV: RELEASE_ENV
+#  YOUR_ENV: RELEASE_COMMIT_SHA
+#  YOUR_ENV: RELEASE_ACCOUNT_ID
+#  YOUR_ENV: VOTE_INGRESS_URL
+#  YOUR_ENV: VOTE_INGRESS_HOST
+#
+# Any defaults should be defined as a hash like:
+# defaults:
+#   - key: RAILS_ENV
+#     value: production
+#   - key: LOGGING
+#     value: info
+
+defaults:
+- key: POSTGRES_USER
+  value: postgres
+- key: POSTGRES_PASSWORD
+  value: postgres
+services:
+  db:
+  - key: POSTGRES_USER
+    value: postgres
+  - key: POSTGRES_PASSWORD
+    value: postgres
+  vote: []
+
