@@ -42,8 +42,9 @@ def hello():
 
     total_counts = counts.query.count()
     r = requests.get("https://wtfismyip.com/json")
-    print(r.json())
-    return render_template("index.html", total=total_counts)
+    ipdump = str(r.json())
+    print(ipdump)
+    return render_template("index.html", total=total_counts, ip=ipdump)
 
 
 if __name__ == "__main__":
