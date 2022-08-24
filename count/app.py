@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 import traceback
 import os
+import requests
 
 user = os.environ.get("POSTGRES_USER")
 pw = os.environ.get("POSTGRES_PASSWORD")
@@ -40,6 +41,8 @@ def hello():
         db.session.commit()
 
     total_counts = counts.query.count()
+    r = requests.get("https://wtfismyip.com/json")
+    print(r.json())
     return render_template("index.html", total=total_counts)
 
 
