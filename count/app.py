@@ -4,47 +4,11 @@ import traceback
 import os
 import requests
 
-user = os.environ.get("POSTGRES_USER")
-pw = os.environ.get("POSTGRES_PASSWORD")
-host = os.environ.get("POSTGRES_HOST")
-db = os.environ.get("POSTGRES_DATABASE_NAME")
-DB_URL = f"postgresql+psycopg2://{user}:{pw}@{host}/{db}"
-print(DB_URL)
-
 app = Flask(__name__)
-
-app.config["SQLALCHEMY_DATABASE_URI"] = DB_URL
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-
-db = SQLAlchemy(app)
-
-
-class counts(db.Model):
-    id = db.Column("count_id", db.Integer, primary_key=True)
-    value = db.Column(db.Integer)
-
-
-try:
-    db.create_all()
-except Exception as e:
-    print(e)
-    print("couldn't initialize db")
-    traceback.print_exc()
-
 
 @app.route("/", methods=["POST", "GET"])
 def hello():
-    if request.method == "POST":
-        c = request.form["countbutton"]
-        count = counts(value=1)
-        db.session.add(count)
-        db.session.commit()
-
-    total_counts = counts.query.count()
-    r = requests.get("https://wtfismyip.com/json")
-    ipdump = str(r.json())
-    print(ipdump)
-    return render_template("index.html", total=total_counts, ip=ipdump)
+    return "Hello world"
 
 
 if __name__ == "__main__":
